@@ -329,6 +329,12 @@ final class ItemNormalizer extends AbstractItemNormalizer
             }
 
             if (!$attributeValue) {
+                if ('many' === $relationshipDataArray['cardinality']) {
+                    $data[$relationshipName] = [
+                        'data' => [],
+                    ];
+                }
+
                 continue;
             }
 
