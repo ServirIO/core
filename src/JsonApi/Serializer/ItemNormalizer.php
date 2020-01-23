@@ -107,8 +107,10 @@ final class ItemNormalizer extends AbstractItemNormalizer
 
         $includedResourcesData = $this->getRelatedResources($object, $format, $context, $allRelationshipsData);
 
+        // This a workaround to use id like identifier not iri
+        // You should have getId() method in entity
         $resourceData = [
-            'id' => $context['iri'],
+            'id' => $data['_id'],
             'type' => $resourceMetadata->getShortName(),
         ];
 
