@@ -150,7 +150,11 @@ final class IriConverter implements IriConverterInterface
         try {
             $identifiers = $this->generateIdentifiersUrl($identifiers, $resourceClass);
 
-            return $this->router->generate($routeName, ['id' => implode(';', $identifiers)], $referenceType);
+            // In this tricky code, the code expect that is only one item in identifiers.
+            return (string)$identifiers[0];
+
+            // We should digg more about how api-platform use the router..
+            // return $this->router->generate($routeName, ['id' => implode(';', $identifiers)], $referenceType);
         } catch (RoutingExceptionInterface $e) {
             throw new InvalidArgumentException(sprintf('Unable to generate an IRI for "%s".', $resourceClass), $e->getCode(), $e);
         }
