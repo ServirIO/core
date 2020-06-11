@@ -151,7 +151,7 @@ final class IriConverter implements IriConverterInterface
             $identifiers = $this->generateIdentifiersUrl($identifiers, $resourceClass);
 
             // In this tricky code, the code expect that is only one item in identifiers.
-            return (string)$identifiers[0];
+            return implode(';', $identifiers);
 
             // We should digg more about how api-platform use the router..
             // return $this->router->generate($routeName, ['id' => implode(';', $identifiers)], $referenceType);
