@@ -176,6 +176,22 @@ final class ItemNormalizer extends AbstractItemNormalizer
     /**
      * {@inheritdoc}
      *
+     * Additionally, trims the attribute value if it's a string.
+     */
+    protected function getAttributeValue($object, $attribute, $format = null, array $context = [])
+    {
+        $attributeValue = parent::getAttributeValue($object, $attribute, $format, $context);
+
+        if (is_string($attributeValue)) {
+            $attributeValue = trim($attributeValue);
+        }
+
+        return $attributeValue;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
      * @see http://jsonapi.org/format/#document-resource-object-linkage
      *
      * @throws RuntimeException
